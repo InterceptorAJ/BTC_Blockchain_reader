@@ -6,7 +6,7 @@ if functions.db_needs_update():
     if function.insert_block():
         print('DB updated')
     else:
-        print('Problem with DB update')
+        print('Error: db cannot be updated')
 else:
     print('DB is up to date')
     exit()
