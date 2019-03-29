@@ -115,46 +115,49 @@ def insert_block():
     timestamp = datetime.datetime.fromtimestamp(time)
     date_time = (timestamp.strftime('%Y-%m-%d %H:%M:%S'))
 
-    # insert a new values into the btc table
-    sql = """INSERT INTO btc(
-    hash_no, 
-    ver, 
-    prev_block, 
-    next_block, 
-    mrkl_root, 
-    time,
-    bits, 
-    fee, 
-    nonce, 
-    n_tx, 
-    size, 
-    block_index,
-    main_chain, 
-    height, 
-    tx_count,
-    date_time
-    ) 
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s); """
+    try:
+        # insert a new values into the btc table
+        sql = """INSERT INTO btc(
+        hash_no, 
+        ver, 
+        prev_block, 
+        next_block, 
+        mrkl_root, 
+        time,
+        bits, 
+        fee, 
+        nonce, 
+        n_tx, 
+        size, 
+        block_index,
+        main_chain, 
+        height, 
+        tx_count,
+        date_time
+        ) 
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s); """
 
-    conn = None
-    # try:
-    # connect to the PostgreSQL database
-    conn = sql_connection.conn
-    # create a new cursor
-    cur = conn.cursor()
-    # execute the INSERT statement
-    cur.execute(sql, (hash_no, ver, prev_block, next_block, mrkl_root, time, bits, fee, nonce, n_tx, size,
-                      block_index, main_chain, height, tx_count, date_time))
-    # commit the changes to the database
-    conn.commit()
-    # close communication with the database
-    cur.close()
-    # except (Exception, psycopg2.DatabaseError) as error:
-    #     print(error)
+        conn = None
+        # try:
+        # connect to the PostgreSQL database
+        conn = sql_connection.conn
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+        cur.execute(sql, (hash_no, ver, prev_block, next_block, mrkl_root, time, bits, fee, nonce, n_tx, size,
+                          block_index, main_chain, height, tx_count, date_time))
+        # commit the changes to the database
+        conn.commit()
+        # close communication with the database
+        cur.close()
 
-    if conn is not None:
-        conn.close()
-    else:
-        pass
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
 
-    return True
+    finally:
+        if conn is not None:
+            conn.close()
+        else:
+            pass
+
+        return True
