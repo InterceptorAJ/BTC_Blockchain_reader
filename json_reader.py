@@ -1,12 +1,18 @@
 import functions
+from functions import check_market
+from functions import check_real
 
-if functions.db_needs_update():
-    print('Updating DB...')
-    functions.insert_block()
-    if function.insert_block():
-        print('DB updated')
-    else:
-        print('Error: db cannot be updated')
-else:
-    print('DB is up to date')
-    exit()
+# CASE 1
+# SQL database populate with basic data
+# if functions.insert_block(10,0):
+#     print('DB updated')
+# else:
+#     print('Problem with DB update')
+
+# CASE 2
+#  run only one time per 24 hour. It will populate the trade btc data every 24 hours
+# check_market()
+
+# CASE 3
+# it gains real time data about unspent transactions etc. It has for loop that iterates every 60 seconds. Argument is number of iterations
+# check_real(numberofiterations)
