@@ -1,0 +1,84 @@
+CREATE TABLE public.btc
+(
+    hash_no text COLLATE pg_catalog."default" NOT NULL,
+    ver integer,
+    prev_block text COLLATE pg_catalog."default",
+    next_block text COLLATE pg_catalog."default",
+    mrkl_root text COLLATE pg_catalog."default",
+    "time" integer,
+    bits integer,
+    fee integer,
+    nonce integer,
+    n_tx integer,
+    size integer,
+    block_index integer,
+    main_chain boolean,
+    height integer,
+    date_time timestamp with time zone,
+    CONSTRAINT btc_pkey PRIMARY KEY (hash_no)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.btc
+    OWNER to postgres;
+
+
+
+
+CREATE TABLE public.btc_real
+(
+    id serial primary key,
+    pending_txs integer,
+    eta float,
+    difficulty float,
+    probability float,
+    hashrate bigint,
+    hashestowin bigint,
+    time_txs integer,
+    date_time timestamp with time zone
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.btc
+    OWNER to postgres;
+
+
+
+CREATE TABLE public.btc_market
+(
+    id serial primary key,
+    market_price_usd smallint,
+    hash_rate bigint,
+    total_fees_btc integer,
+    n_btc_mined integer,
+    n_tx integer,
+    n_blocks_mined integer,
+    minutes_between_blocks integer,
+    totalbc integer,
+    n_blocks_total integer,
+    estimated_transaction_volume_usd integer,
+    blocks_size integer,
+    miners_revenue_usd integer,
+    nextretarget integer,
+    difficulty bigint,
+    estimated_btc_sent bigint,
+    miners_revenue_btc smallint,
+    total_btc_sent bigint,
+    trade_volume_btc smallint,
+    trade_volume_usd integer,
+    time_stamp bigint,
+    date_time timestamp with time zone
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.btc
+    OWNER to postgres;
