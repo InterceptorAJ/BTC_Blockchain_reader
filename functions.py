@@ -203,7 +203,7 @@ def check_real(count):
 
         return True
 
-def check_market(count):
+def check_market():
     # try:
         conn = None
         # try:
@@ -212,7 +212,7 @@ def check_market(count):
         # create a new cursor
         cur = conn.cursor()
 
-        for i in range(0, count):
+        for i in range(0, 1):
             url1 = urllib.request.urlopen(f'https://api.blockchain.info/stats')
             url_pd = json.loads(url1.read().decode())
 
